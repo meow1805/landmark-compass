@@ -15,39 +15,39 @@ export function WelcomeScreen({ onStart }: WelcomeScreenProps) {
 
   return (
     <div className="exhibit-container min-h-screen flex flex-col">
-      <div className="flex-1 flex flex-col items-center justify-center max-w-4xl mx-auto text-center px-4">
+      <div className="flex-1 flex flex-col items-center justify-center max-w-4xl mx-auto text-center px-4 py-6 md:py-8">
         {/* Main Title */}
-        <div className="mb-8">
-          <span className="inline-block px-4 py-2 bg-primary/10 text-primary rounded-full text-sm font-medium mb-6">
+        <div className="mb-6 md:mb-8">
+          <span className="inline-block px-3 py-1.5 md:px-4 md:py-2 bg-primary/10 text-primary rounded-full text-xs md:text-sm font-medium mb-4 md:mb-6">
             Interactive Educational Exhibit
           </span>
-          <h1 className="exhibit-title mb-4">
+          <h1 className="exhibit-title mb-3 md:mb-4">
             Beyond the Map
           </h1>
-          <p className="text-2xl md:text-3xl text-muted-foreground font-light leading-relaxed">
+          <p className="text-xl md:text-2xl lg:text-3xl text-muted-foreground font-light leading-relaxed">
             Safety and Accessibility in Philippine City Landmarks
           </p>
         </div>
 
         {/* Description */}
-        <p className="text-lg text-muted-foreground max-w-2xl mb-12 leading-relaxed">
+        <p className="text-base md:text-lg text-muted-foreground max-w-2xl mb-6 md:mb-12 leading-relaxed">
           Online maps show location and hours—but what about stairs, walking distances, 
           shade, or seating? Discover what's missing and why it matters.
         </p>
 
         {/* Steps */}
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-12 w-full">
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-4 mb-8 md:mb-12 w-full">
           {steps.map((step, index) => (
             <div 
               key={index}
-              className="exhibit-card p-6 text-center"
+              className="exhibit-card p-4 md:p-6 text-center"
               style={{ animationDelay: `${index * 0.1}s` }}
             >
-              <div className="w-14 h-14 rounded-2xl bg-primary/10 text-primary flex items-center justify-center mx-auto mb-4">
+              <div className="w-10 h-10 md:w-14 md:h-14 rounded-xl md:rounded-2xl bg-primary/10 text-primary flex items-center justify-center mx-auto mb-2 md:mb-4">
                 {step.icon}
               </div>
-              <h3 className="font-semibold text-foreground mb-2">{step.title}</h3>
-              <p className="text-sm text-muted-foreground">{step.desc}</p>
+              <h3 className="font-semibold text-foreground text-sm md:text-base mb-1 md:mb-2">{step.title}</h3>
+              <p className="text-xs md:text-sm text-muted-foreground hidden md:block">{step.desc}</p>
             </div>
           ))}
         </div>
@@ -55,14 +55,14 @@ export function WelcomeScreen({ onStart }: WelcomeScreenProps) {
         {/* Start Button */}
         <button
           onClick={onStart}
-          className="exhibit-button pulse-attention text-xl px-12 py-5"
+          className="exhibit-button pulse-attention text-lg md:text-xl px-8 md:px-12 py-4 md:py-5 w-full md:w-auto"
         >
           Begin Your Journey
         </button>
 
         {/* Footer note */}
-        <p className="mt-8 text-sm text-muted-foreground">
-          Touch the screen to start • Educational simulation • 5-7 minutes
+        <p className="mt-6 md:mt-8 text-xs md:text-sm text-muted-foreground">
+          Touch to start • 5-7 minutes
         </p>
       </div>
     </div>

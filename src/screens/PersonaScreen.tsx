@@ -21,22 +21,22 @@ export function PersonaScreen({ landmark, personas, onSelect, onBack }: PersonaS
       />
 
       {/* Selected landmark indicator */}
-      <div className="flex items-center gap-3 mb-8 p-4 bg-card rounded-xl max-w-md">
-        <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center">
-          <MapPin className="w-6 h-6 text-primary" />
+      <div className="flex items-center gap-2 md:gap-3 mb-6 md:mb-8 p-3 md:p-4 bg-card rounded-xl max-w-md">
+        <div className="w-10 h-10 md:w-12 md:h-12 rounded-xl bg-primary/10 flex items-center justify-center shrink-0">
+          <MapPin className="w-5 h-5 md:w-6 md:h-6 text-primary" />
         </div>
-        <div>
-          <p className="text-sm text-muted-foreground">Visiting</p>
-          <p className="font-semibold text-foreground">{landmark.name}, {landmark.location}</p>
+        <div className="min-w-0">
+          <p className="text-xs md:text-sm text-muted-foreground">Visiting</p>
+          <p className="font-semibold text-foreground text-sm md:text-base truncate">{landmark.name}, {landmark.location}</p>
         </div>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-5xl">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6 max-w-5xl">
         {personas.map((persona, index) => (
           <div 
             key={persona.id}
             className="animate-fade-in"
-            style={{ animationDelay: `${index * 0.1}s` }}
+            style={{ animationDelay: `${index * 0.05}s` }}
           >
             <PersonaCard
               persona={persona}

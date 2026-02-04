@@ -18,12 +18,12 @@ export function LandmarkScreen({ landmarks, onSelect, onBack }: LandmarkScreenPr
         onBack={onBack}
       />
 
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-7xl mx-auto">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6 max-w-7xl mx-auto">
         {landmarks.map((landmark, index) => (
           <div 
             key={landmark.id}
             className="animate-fade-in"
-            style={{ animationDelay: `${index * 0.1}s` }}
+            style={{ animationDelay: `${index * 0.05}s` }}
           >
             <LandmarkCard
               landmark={landmark}
