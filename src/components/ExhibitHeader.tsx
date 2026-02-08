@@ -16,10 +16,10 @@ export function ExhibitHeader({ title, subtitle, showBack, onBack, className, ce
       {showBack && (
         <button
           onClick={onBack}
-          className="flex items-center gap-2 text-muted-foreground hover:text-foreground transition-colors mb-4 touch-target"
+          className="flex items-center justify-center w-9 h-9 rounded-full text-muted-foreground hover:text-foreground hover:bg-muted/60 transition-colors mb-4 touch-target"
+          aria-label="Go back"
         >
           <ArrowLeft className="w-5 h-5" />
-          <span className="font-medium">Back</span>
         </button>
       )}
       <h1 className="exhibit-title mb-3">{title}</h1>

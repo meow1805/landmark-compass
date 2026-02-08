@@ -2,7 +2,7 @@
 import { Landmark, Persona, PlayerStats, HiddenCondition } from '@/types/exhibit';
 import { CharacterAvatar } from '@/components/CharacterAvatar';
 import { StatBar } from '@/components/StatBar';
-import { ChevronRight, Check, Footprints, ArrowUpFromLine, Sun, Accessibility, Bus, Armchair, AlertTriangle, MapPin, Trees, CloudRain, DollarSign, ShieldAlert, Bird, Mountain, Droplets, Store, Signpost, Bath } from 'lucide-react';
+import { ChevronRight, Check, Footprints, ArrowUpFromLine, Sun, Accessibility, Bus, Armchair, AlertTriangle, MapPin, Trees, CloudRain, DollarSign, ShieldAlert, Bird, Mountain, Droplets, Store, Signpost, Bath, ArrowLeft } from 'lucide-react';
 
 interface RevealedCondition {
   condition: HiddenCondition;
@@ -19,6 +19,7 @@ interface RevealScreenProps {
   currentRevealIndex: number;
   onRevealNext: () => void;
   onFinish: () => void;
+  onBack: () => void;
 }
 
 const conditionIcon = (type: HiddenCondition['type']) => {
@@ -68,6 +69,7 @@ export function RevealScreen({
   currentRevealIndex,
   onRevealNext,
   onFinish,
+  onBack,
 }: RevealScreenProps) {
   const totalConditions = landmark.hiddenConditions.length;
   const allRevealed = currentRevealIndex >= totalConditions;
@@ -91,6 +93,16 @@ export function RevealScreen({
 
   return (
     <div className="min-h-screen flex flex-col relative overflow-hidden">
+      {/* Back button (top-left) */}
+      <button
+        onClick={onBack}
+        className="fixed top-4 left-4 z-50 flex items-center justify-center w-9 h-9 rounded-lg
+          bg-background/80 hover:bg-background border border-border backdrop-blur-sm
+          text-foreground shadow-md transition-all duration-200"
+      >
+        <ArrowLeft className="w-4 h-4" />
+      </button>
+
       {/* Background scene tint */}
       <div className="absolute inset-0 bg-gradient-to-b from-zinc-900 via-zinc-900/95 to-zinc-950 -z-10" />
       <div className="game-grid-overlay" />
@@ -268,9 +280,9 @@ export function RevealScreen({
               <button
                 onClick={onFinish}
                 className="w-full flex items-center justify-center gap-2 py-4 px-6 rounded-xl text-base font-bold
-                  bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-500 hover:to-teal-500
-                  shadow-lg shadow-emerald-500/25 transition-all duration-200 text-white
-                  hover:shadow-xl hover:shadow-emerald-500/30 hover:scale-[1.01] active:scale-[0.99]"
+                  bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-500 hover:to-pink-500
+                  shadow-lg shadow-purple-500/25 transition-all duration-200 text-white
+                  hover:shadow-xl hover:shadow-purple-500/30 hover:scale-[1.01] active:scale-[0.99]"
               >
                 <Check className="w-5 h-5" />
                 View Final Results

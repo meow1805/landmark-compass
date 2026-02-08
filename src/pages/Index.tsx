@@ -79,6 +79,7 @@ const Index = () => {
             currentRevealIndex={currentRevealIndex}
             onRevealNext={revealNextCondition}
             onFinish={finishVisit}
+            onBack={goBack}
           />
         ) : null;
 

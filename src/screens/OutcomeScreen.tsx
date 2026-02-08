@@ -220,17 +220,18 @@ export function OutcomeScreen({
   ];
 
   return (
-    <div className="exhibit-container min-h-screen">
+    <div className="exhibit-container min-h-screen relative">
       {/* Back button (top-left) */}
-      <button
-        onClick={step === 0 ? onBack : () => setStep(step - 1)}
-        className="absolute top-4 left-4 z-30 flex items-center gap-1.5 px-3 py-2 rounded-lg
-          bg-white/10 hover:bg-white/20 border border-white/10 backdrop-blur-sm
-          text-sm font-medium text-white transition-all duration-200"
-      >
-        <ArrowLeft className="w-4 h-4" />
-        Back
-      </button>
+      {step < 2 && (
+        <button
+          onClick={step === 0 ? onBack : () => setStep(step - 1)}
+          className="fixed top-4 left-4 z-50 flex items-center justify-center w-9 h-9 rounded-lg
+            bg-background/80 hover:bg-background border border-border backdrop-blur-sm
+            text-foreground shadow-md transition-all duration-200"
+        >
+          <ArrowLeft className="w-4 h-4" />
+        </button>
+      )}
 
       <ExhibitHeader
         title={stepTitles[step]}
@@ -256,10 +257,7 @@ export function OutcomeScreen({
                 <div className="rounded-2xl border border-white/10 bg-white/5 backdrop-blur-sm p-5">
                   <div className="flex flex-col items-center text-center mb-4">
                     <CharacterAvatar config={persona.characterConfig ?? {}} size={100} />
-                    <h3 className="text-lg font-bold text-foreground font-serif mt-3">
-                      {persona.name}
-                    </h3>
-                    <p className="text-xs text-primary font-medium">{persona.role}</p>
+                    <p className="text-xs text-primary font-medium mt-3">{persona.role}</p>
                     <p className="text-xs text-zinc-400 mt-2 leading-relaxed">
                       {outcomeMessages[outcomeLevel].description}
                     </p>
@@ -487,13 +485,13 @@ export function OutcomeScreen({
             <div className="flex gap-3">
               <button
                 onClick={() => setStep(0)}
-                className="flex items-center justify-center gap-2 py-4 px-6 rounded-xl text-base font-bold
+                className="flex items-center justify-center w-12 h-12 rounded-xl
                   bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-500 hover:to-pink-500
                   shadow-lg shadow-purple-500/25 transition-all duration-200 text-white
                   hover:shadow-xl hover:scale-[1.01] active:scale-[0.99]"
+                aria-label="Go back"
               >
                 <ArrowLeft className="w-5 h-5" />
-                Back
               </button>
               <button
                 onClick={() => setStep(2)}
@@ -530,13 +528,13 @@ export function OutcomeScreen({
             <div className="flex gap-3">
               <button
                 onClick={() => setStep(1)}
-                className="flex items-center justify-center gap-2 py-4 px-6 rounded-xl text-base font-bold
+                className="flex items-center justify-center w-12 h-12 rounded-xl
                   bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-500 hover:to-pink-500
                   shadow-lg shadow-purple-500/25 transition-all duration-200 text-white
                   hover:shadow-xl hover:scale-[1.01] active:scale-[0.99]"
+                aria-label="Go back"
               >
                 <ArrowLeft className="w-5 h-5" />
-                Back
               </button>
               <button
                 onClick={onReset}

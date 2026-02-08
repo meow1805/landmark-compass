@@ -588,7 +588,8 @@ export function PersonaScreen({ landmark, onSelect, onBack }: PersonaScreenProps
               className="w-full py-6 text-base font-bold rounded-xl bg-gradient-to-r from-purple-600 to-pink-600 
                 hover:from-purple-500 hover:to-pink-500 active:from-purple-700 active:to-pink-700 active:scale-95
                 shadow-lg shadow-purple-500/25 hover:shadow-purple-500/40 transition-all
-                disabled:opacity-30 disabled:cursor-not-allowed disabled:shadow-none"
+                disabled:opacity-30 disabled:cursor-not-allowed disabled:shadow-none
+                pulse-attention"
               disabled={!isValid}
               onClick={() => onSelect(persona)}
             >

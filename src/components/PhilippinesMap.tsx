@@ -61,7 +61,7 @@ function geoToSvg(lat: number, lng: number): { x: number; y: number } {
 const REGION_VIEWBOX: Record<Region, string> = {
   luzon:    '100 0 450 550',
   visayas:  '360 680 240 220',
-  mindanao: '480 900 280 250',
+  mindanao: '460 850 330 340',
 };
 
 // ── Colors per region (hex for direct DOM manipulation) ──

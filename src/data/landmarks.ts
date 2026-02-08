@@ -520,6 +520,7 @@ export const landmarks: Landmark[] = [
     region: 'mindanao',
     description: 'Conservation center for the critically endangered Philippine Eagle.',
     imageUrl: '/landmarks/philippine-eagle-center.jpg',
+    imageFocus: 'center 30%',
     mapCenter: [7.2408, 125.3936],
     mapZoom: 15,
     hiddenConditions: [

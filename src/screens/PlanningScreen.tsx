@@ -60,7 +60,8 @@ export function PlanningScreen({ landmark, persona, stats, onStart, onBack }: Pl
             className="w-full flex items-center justify-center gap-1.5 py-3 px-4 rounded-xl text-sm font-bold
               bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-500 hover:to-pink-500
               shadow-lg shadow-purple-500/25 transition-all duration-200 text-white
-              hover:shadow-xl hover:shadow-purple-500/30 hover:scale-[1.01] active:scale-[0.99]"
+              hover:shadow-xl hover:shadow-purple-500/30 hover:scale-[1.01] active:scale-[0.99]
+              pulse-attention"
           >
             <Play className="w-4 h-4" />
             Begin Visit
