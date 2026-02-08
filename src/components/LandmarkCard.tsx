@@ -13,33 +13,44 @@ export function LandmarkCard({ landmark, isSelected, onClick }: LandmarkCardProp
     <button
       onClick={onClick}
       className={cn(
-        'exhibit-card w-full text-left touch-target cursor-pointer overflow-hidden p-4 md:p-6',
-        isSelected && 'exhibit-card-selected'
+        'exhibit-card group w-full h-full text-left touch-target cursor-pointer overflow-hidden relative rounded-xl',
+        isSelected && 'exhibit-card-selected ring-2 ring-primary/50'
       )}
     >
-      {/* Image placeholder with gradient */}
-      <div className="relative h-32 md:h-40 rounded-xl overflow-hidden mb-3 md:mb-4">
-        <div className="absolute inset-0 bg-gradient-to-br from-primary/20 via-primary/30 to-accent/20" />
-        <div className="absolute inset-0 flex items-center justify-center">
-          <span className="text-5xl md:text-6xl opacity-30">🏛️</span>
-        </div>
-        <div className="absolute bottom-2 left-2 md:bottom-3 md:left-3 flex items-center gap-1 md:gap-1.5 bg-background/90 backdrop-blur-sm px-2 py-1 md:px-3 md:py-1.5 rounded-full">
-          <MapPin className="w-3 h-3 md:w-4 md:h-4 text-primary" />
-          <span className="text-xs md:text-sm font-medium text-foreground">{landmark.location}</span>
-        </div>
+      {/* Full background image */}
+      <img
+        src={landmark.imageUrl}
+        alt={landmark.name}
+        className="absolute inset-0 w-full h-full object-cover object-center transition-transform duration-500 group-hover:scale-110"
+        loading="lazy"
+        onError={(e) => {
+          const target = e.currentTarget;
+          target.style.display = 'none';
+          target.parentElement!.classList.add('landmark-img-fallback');
+        }}
+      />
+
+      {/* Dark overlay gradient */}
+      <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-black/10 transition-colors duration-300 group-hover:from-black/70" />
+
+      {/* Location badge */}
+      <div className="absolute top-2 left-2 flex items-center gap-1 bg-background/80 backdrop-blur-sm px-2 py-1 rounded-full z-10">
+        <MapPin className="w-3 h-3 text-primary" />
+        <span className="text-xs font-medium text-foreground">{landmark.location}</span>
       </div>
-      
-      <h3 className="text-lg md:text-xl font-bold text-foreground font-serif mb-1 md:mb-2">
-        {landmark.name}
-      </h3>
-      <p className="text-xs md:text-sm text-muted-foreground leading-relaxed line-clamp-2">
-        {landmark.description}
-      </p>
-      
-      {/* Hidden conditions indicator */}
-      <div className="mt-3 md:mt-4 flex items-center gap-2 text-xs text-muted-foreground">
-        <span className="w-2 h-2 rounded-full bg-accent/50 shrink-0" />
-        <span>{landmark.hiddenConditions.length} hidden conditions</span>
+
+      {/* Content overlaid at bottom */}
+      <div className="absolute inset-x-0 bottom-0 p-3 md:p-4 flex flex-col gap-1 z-10">
+        <h3 className="text-sm md:text-base font-bold text-white font-serif leading-tight drop-shadow-md">
+          {landmark.name}
+        </h3>
+        <p className="text-xs text-white/80 leading-relaxed line-clamp-2 drop-shadow-sm">
+          {landmark.description}
+        </p>
+        <div className="mt-1 flex items-center gap-1.5 text-[11px] text-white/70">
+          <span className="w-1.5 h-1.5 rounded-full bg-white/50 shrink-0" />
+          <span>{landmark.hiddenConditions.length} hidden conditions</span>
+        </div>
       </div>
     </button>
   );

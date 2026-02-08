@@ -1,8 +1,8 @@
+@import url('https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;500;600;700&family=Merriweather:wght@400;700&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-
-@import url('https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;500;600;700&family=Merriweather:wght@400;700&display=swap');
 
 @layer base {
   :root {
@@ -132,10 +132,8 @@
 
 @layer components {
   .exhibit-container {
-    @apply min-h-screen bg-background p-6 md:p-8 lg:p-12;
-    background-image: 
-      radial-gradient(ellipse at top left, hsl(var(--primary) / 0.05) 0%, transparent 50%),
-      radial-gradient(ellipse at bottom right, hsl(var(--accent) / 0.05) 0%, transparent 50%);
+    @apply min-h-screen p-6 md:p-8 lg:p-12;
+    background: transparent;
   }
 
   .exhibit-card {
@@ -196,9 +194,120 @@
     @apply h-full rounded-full transition-all duration-700 ease-out;
   }
 
+  .landmark-image-wrapper {
+    @apply w-full h-44 sm:h-48 overflow-hidden bg-muted;
+    border-radius: inherit;
+  }
+
+  .exhibit-card.p-0 .landmark-image-wrapper {
+    border-radius: 1rem 1rem 0 0;
+  }
+
   .landmark-image {
-    @apply w-full h-48 object-cover rounded-xl;
+    @apply w-full h-full object-cover;
     background: var(--landmark-gradient);
+  }
+
+  .landmark-image-wrapper .landmark-image[src=""],
+  .landmark-image-wrapper .landmark-image:not([src]) {
+    @apply opacity-0;
+  }
+
+  .hero-ribbon {
+    @apply inline-flex items-center gap-2 text-xs md:text-sm font-semibold uppercase tracking-widest;
+    @apply bg-primary/10 text-primary px-3 py-1 rounded-full;
+  }
+
+  .step-chip {
+    @apply inline-flex items-center gap-2 rounded-full bg-secondary px-3 py-1 text-xs font-semibold;
+  }
+
+  .map-stage {
+    @apply relative rounded-2xl overflow-hidden border bg-card;
+    box-shadow: var(--shadow-card);
+  }
+
+  .map-pan {
+    @apply transition-transform duration-700 ease-out;
+  }
+
+  .map-sketch {
+    filter: saturate(0.75) contrast(1.08) brightness(1.03);
+  }
+
+  .map-overlay {
+    @apply pointer-events-none absolute inset-0;
+    background-image: linear-gradient(180deg, hsl(var(--foreground) / 0.03), transparent 40%);
+  }
+
+  .map-path {
+    @apply absolute left-6 top-6 right-6 bottom-6 border-2 border-dashed rounded-xl;
+    border-color: hsl(var(--primary) / 0.3);
+  }
+
+  .character-token {
+    @apply absolute flex items-center justify-center rounded-full border-2;
+    width: 44px;
+    height: 44px;
+    background: hsl(var(--primary));
+    color: hsl(var(--primary-foreground));
+    border-color: hsl(var(--background));
+    box-shadow: var(--shadow-elevated);
+    transition: transform 700ms ease, left 700ms ease, top 700ms ease;
+    animation: floatToken 3s ease-in-out infinite;
+  }
+
+  .character-card {
+    @apply rounded-2xl overflow-hidden bg-card;
+    box-shadow: var(--shadow-card);
+  }
+
+  .character-portrait {
+    @apply w-16 h-16 rounded-2xl flex items-center justify-center text-3xl bg-secondary;
+  }
+
+  .map-legend {
+    @apply absolute right-4 top-4 bg-background/90 border rounded-xl p-3 text-xs;
+    box-shadow: var(--shadow-card);
+  }
+
+  .slide-in-right {
+    animation: slideInRight 0.6s ease-out both;
+  }
+
+  .slide-in-left {
+    animation: slideInLeft 0.6s ease-out both;
+  }
+
+  @keyframes slideInRight {
+    from {
+      opacity: 0;
+      transform: translateX(30px);
+    }
+    to {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+
+  @keyframes slideInLeft {
+    from {
+      opacity: 0;
+      transform: translateX(-30px);
+    }
+    to {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+
+  @keyframes floatToken {
+    0%, 100% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(-4px);
+    }
   }
 
   .touch-target {
@@ -273,4 +382,244 @@
       filter: brightness(1);
     }
   }
-}
+
+  /* Sketch / cartoon game map */
+  .sketch-map-game {
+    @apply w-full;
+  }
+
+  .sketch-map-paper {
+    @apply relative rounded-2xl overflow-hidden border-2;
+    background: linear-gradient(145deg, hsl(40 35% 96%) 0%, hsl(35 30% 92%) 100%);
+    border-color: hsl(30 25% 82%);
+    box-shadow:
+      inset 0 1px 0 hsl(0 0% 100% / 0.6),
+      0 4px 20px hsl(25 30% 15% / 0.12);
+  }
+
+  .sketch-map-svg {
+    @apply w-full block;
+    height: auto;
+    min-height: 200px;
+  }
+
+  .sketch-path-bg {
+    stroke-dasharray: 4 3;
+    animation: sketch-dash 20s linear infinite;
+  }
+
+  .sketch-path {
+    stroke-dasharray: 6 4;
+    animation: sketch-dash 15s linear infinite;
+  }
+
+  @keyframes sketch-dash {
+    to {
+      stroke-dashoffset: -10;
+    }
+  }
+
+  .sketch-junction {
+    stroke-dasharray: 3 2;
+  }
+
+  .sketch-character {
+    @apply absolute w-10 h-10 flex items-center justify-center rounded-full;
+    transform: translate(-50%, -50%);
+    background: hsl(var(--primary));
+    color: hsl(var(--primary-foreground));
+    border: 2px solid hsl(var(--background));
+    box-shadow: 0 4px 12px hsl(25 30% 15% / 0.25);
+    transition: left 0.6s ease-out, top 0.6s ease-out;
+  }
+
+  .sketch-character-emoji {
+    @apply text-xl leading-none;
+  }
+
+  .sketch-map-rain {
+    @apply absolute right-3 top-3 px-2 py-1 rounded-lg;
+    background: hsl(210 80% 95%);
+    color: hsl(210 70% 35%);
+  }
+
+  .sketch-map-fork-label {
+    @apply absolute bottom-3 left-1/2 -translate-x-1/2 px-3 py-1.5 rounded-lg;
+    background: hsl(var(--background) / 0.9);
+    border: 1px solid hsl(var(--border));
+  }
+
+  .sketch-map-buttons {
+    @apply flex flex-wrap gap-3 mt-4 justify-center;
+  }
+
+  .sketch-map-btn {
+    @apply px-6 py-3 rounded-xl font-semibold transition-all duration-200;
+    @apply bg-primary text-primary-foreground;
+    @apply hover:opacity-90 disabled:opacity-50 disabled:pointer-events-none;
+    @apply focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2;
+  }
+
+  .sketch-map-btn-left { @apply rounded-l-xl; }
+  .sketch-map-btn-straight { @apply rounded-none; }
+  .sketch-map-btn-right { @apply rounded-r-xl; }
+
+  /* Solution map (complete map with hazards / advocacy) */
+  .solution-map {
+    @apply w-full;
+  }
+
+  .solution-map-header {
+    @apply flex items-start gap-3 mb-3;
+  }
+
+  .solution-map-paper {
+    @apply rounded-xl border-2 p-4;
+    background: linear-gradient(145deg, hsl(145 30% 96%) 0%, hsl(150 25% 94%) 100%);
+    border-color: hsl(145 35% 85%);
+  }
+
+  .solution-map-simple {
+    @apply flex flex-col sm:flex-row gap-4 items-start;
+  }
+
+  .solution-map-placeholder {
+    @apply flex flex-col items-center justify-center gap-2 rounded-lg border border-dashed border-muted-foreground/30 bg-background/60;
+    min-height: 100px;
+    min-width: 140px;
+  }
+
+  .solution-map-legend {
+    @apply flex flex-wrap gap-2 list-none p-0 m-0;
+  }
+
+  .solution-map-legend-item {
+    @apply flex items-center gap-2 px-3 py-1.5 rounded-lg bg-background/80 border text-sm;
+  }
+
+  @keyframes ping {
+    75%, 100% {
+      transform: scale(2.5);
+      opacity: 0;
+    }
+  }
+
+  /* ── Image fallback gradient ── */
+  .landmark-img-fallback {
+    background: linear-gradient(135deg, hsl(var(--primary) / 0.3), hsl(var(--accent) / 0.4), hsl(var(--secondary)));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .landmark-img-fallback::after {
+    content: '🏛️';
+    font-size: 3rem;
+    opacity: 0.6;
+  }
+
+  /* ── Animated game background ── */
+  body {
+    background:
+      radial-gradient(ellipse at 15% 30%, hsl(260 60% 60% / 0.13) 0%, transparent 50%),
+      radial-gradient(ellipse at 85% 20%, hsl(160 70% 45% / 0.12) 0%, transparent 45%),
+      radial-gradient(ellipse at 50% 85%, hsl(15 80% 55% / 0.10) 0%, transparent 50%),
+      radial-gradient(ellipse at 70% 60%, hsl(40 90% 60% / 0.06) 0%, transparent 40%),
+      hsl(var(--background));
+    background-attachment: fixed;
+    min-height: 100vh;
+    position: relative;
+    animation: bgPulse 25s ease-in-out infinite alternate;
+  }
+
+  @keyframes bgPulse {
+    0% { filter: hue-rotate(0deg) brightness(1); }
+    50% { filter: hue-rotate(8deg) brightness(1.02); }
+    100% { filter: hue-rotate(-5deg) brightness(0.99); }
+  }
+
+  body::before,
+  body::after {
+    content: '';
+    position: fixed;
+    border-radius: 50%;
+    filter: blur(100px);
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  body::before {
+    width: 600px;
+    height: 600px;
+    background: hsl(260 60% 55% / 0.18);
+    top: -150px;
+    right: -150px;
+    animation: floatBlob 16s ease-in-out infinite alternate;
+  }
+
+  body::after {
+    width: 500px;
+    height: 500px;
+    background: hsl(160 70% 45% / 0.15);
+    bottom: -120px;
+    left: -120px;
+    animation: floatBlob 16s ease-in-out infinite alternate-reverse;
+  }
+
+  @keyframes floatBlob {
+    0% { transform: translate(0, 0) scale(1); }
+    25% { transform: translate(40px, -30px) scale(1.1); }
+    50% { transform: translate(-20px, 40px) scale(0.95); }
+    75% { transform: translate(30px, 10px) scale(1.08); }
+    100% { transform: translate(-10px, -20px) scale(1.02); }
+  }
+
+  /* ── Floating particles ── */
+  .game-particles {
+    position: fixed;
+    inset: 0;
+    z-index: 0;
+    overflow: hidden;
+    pointer-events: none;
+  }
+
+  .particle {
+    position: absolute;
+    border-radius: 50%;
+    opacity: 0;
+    animation: particleFloat linear infinite;
+    box-shadow: 0 0 6px 2px currentColor;
+  }
+
+  @keyframes particleFloat {
+    0% {
+      opacity: 0;
+      transform: translateY(100vh) rotate(0deg) scale(0);
+    }
+    10% {
+      opacity: 0.7;
+    }
+    50% {
+      opacity: 0.4;
+    }
+    90% {
+      opacity: 0.15;
+    }
+    100% {
+      opacity: 0;
+      transform: translateY(-20vh) rotate(180deg) scale(1.2);
+    }
+  }
+
+  /* ── Grid overlay for game feel ── */
+  .game-grid-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 0;
+    pointer-events: none;
+    background-image:
+      linear-gradient(hsl(var(--foreground) / 0.02) 1px, transparent 1px),
+      linear-gradient(90deg, hsl(var(--foreground) / 0.02) 1px, transparent 1px);
+    background-size: 60px 60px;
+    mask-image: radial-gradient(ellipse at center, black 40%, transparent 75%);
+    -webkit-mask-image: radial-gradient(ellipse at center, black 40%, transparent 75%);
+  }}

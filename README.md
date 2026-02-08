@@ -1,5 +1,22 @@
 # Welcome to your Lovable project
 
+## Map or Reality? — Landmark Map Transparency Demo
+
+- New single-page demo route: `/map-transparency`
+- Shows three-step flow:
+	- Incomplete Map View with limited info and decision buttons
+	- Improved Map View with expanded, actionable panels
+	- Comparison View of typical vs improved information
+- Uses OpenStreetMap via Leaflet; data is hardcoded for Intramuros, Manila.
+
+Quick start:
+
+```sh
+npm install
+npm run dev
+# Open http://localhost:5173/map-transparency
+```
+
 ## Project info
 
 **URL**: https://lovable.dev/projects/REPLACE_WITH_PROJECT_ID

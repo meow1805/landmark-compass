@@ -10,7 +10,8 @@ export const personas: Persona[] = [
     initialHealth: 70,
     initialStamina: 50,
     initialMoney: 300,
-    vulnerabilities: ['stairs', 'distance', 'heat']
+    vulnerabilities: ['stairs', 'distance', 'heat'],
+    mapKnowledge: 'medium',
   },
   {
     id: 'parent',
@@ -21,7 +22,8 @@ export const personas: Persona[] = [
     initialHealth: 90,
     initialStamina: 70,
     initialMoney: 500,
-    vulnerabilities: ['accessibility', 'facilities', 'crowds']
+    vulnerabilities: ['accessibility', 'facilities', 'crowds'],
+    mapKnowledge: 'medium',
   },
   {
     id: 'limited-stamina',
@@ -32,17 +34,43 @@ export const personas: Persona[] = [
     initialHealth: 80,
     initialStamina: 40,
     initialMoney: 400,
-    vulnerabilities: ['distance', 'unpredictability', 'standing']
+    vulnerabilities: ['distance', 'unpredictability', 'standing'],
+    mapKnowledge: 'medium',
   },
   {
     id: 'tourist',
     name: 'David',
-    role: 'First-Time Tourist',
-    description: 'A 28-year-old foreign tourist unfamiliar with local conditions. He has good health but limited local knowledge and budget awareness.',
+    role: 'First-Time Visitor',
+    description: 'A visitor unfamiliar with local conditions. Good health but limited local knowledge—what the map shows is all they have.',
     avatar: '🧑‍🦱',
     initialHealth: 95,
     initialStamina: 85,
     initialMoney: 600,
-    vulnerabilities: ['pricing', 'navigation', 'language']
-  }
+    vulnerabilities: ['pricing', 'navigation', 'language'],
+    mapKnowledge: 'low',
+  },
+  {
+    id: 'professor',
+    name: 'Dr. Santos',
+    role: 'Professor',
+    description: 'A professor leading a site visit. Needs to plan for the whole group—stairs, distance, and rest areas matter for everyone.',
+    avatar: '👨‍🏫',
+    initialHealth: 85,
+    initialStamina: 65,
+    initialMoney: 450,
+    vulnerabilities: ['distance', 'stairs', 'facilities'],
+    mapKnowledge: 'medium',
+  },
+  {
+    id: 'local',
+    name: 'Rico',
+    role: 'Student',
+    description: 'A college student who often visits the area. Knows shortcuts, which paths get slippery when rainy, and where to rest—but official maps rarely show this.',
+    avatar: '🧑‍🎓',
+    initialHealth: 90,
+    initialStamina: 75,
+    initialMoney: 350,
+    vulnerabilities: [],
+    mapKnowledge: 'high',
+  },
 ];

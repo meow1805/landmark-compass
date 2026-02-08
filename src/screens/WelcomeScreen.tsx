@@ -18,21 +18,14 @@ export function WelcomeScreen({ onStart }: WelcomeScreenProps) {
       <div className="flex-1 flex flex-col items-center justify-center max-w-4xl mx-auto text-center px-4 py-6 md:py-8">
         {/* Main Title */}
         <div className="mb-6 md:mb-8">
-          <span className="inline-block px-3 py-1.5 md:px-4 md:py-2 bg-primary/10 text-primary rounded-full text-xs md:text-sm font-medium mb-4 md:mb-6">
-            Interactive Educational Exhibit
-          </span>
           <h1 className="exhibit-title mb-3 md:mb-4">
-            Beyond the Map
+            More Than a Location: Making City Landmark Information Accessible
           </h1>
-          <p className="text-xl md:text-2xl lg:text-3xl text-muted-foreground font-light leading-relaxed">
-            Safety and Accessibility in Philippine City Landmarks
-          </p>
         </div>
 
         {/* Description */}
         <p className="text-base md:text-lg text-muted-foreground max-w-2xl mb-6 md:mb-12 leading-relaxed">
-          Online maps show location and hours—but what about stairs, walking distances, 
-          shade, or seating? Discover what's missing and why it matters.
+          Open to the public. Unclear to navigate. Without full details, visitors cannot plan safely or confidently.
         </p>
 
         {/* Steps */}

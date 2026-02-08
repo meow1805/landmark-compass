@@ -5,6 +5,7 @@ import { PersonaScreen } from '@/screens/PersonaScreen';
 import { PlanningScreen } from '@/screens/PlanningScreen';
 import { RevealScreen } from '@/screens/RevealScreen';
 import { OutcomeScreen } from '@/screens/OutcomeScreen';
+import { useEffect } from 'react';
 
 const Index = () => {
   const {
@@ -25,6 +26,11 @@ const Index = () => {
     resetExhibit,
     goBack,
   } = useExhibitState();
+
+  // Scroll to top whenever the screen changes
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: 'instant' });
+  }, [currentScreen]);
 
   const renderScreen = () => {
     switch (currentScreen) {
